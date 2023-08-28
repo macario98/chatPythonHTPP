@@ -3,7 +3,7 @@ class Domain:
     id:int
     name:str
     lastSeen:datetime
-    def __init__(self) -> None:
+    def __init__(self, name = "", lastSeen = datetime.datetime.utcnow()) -> None:
         self.id = 0
-        self.name = ""
-        self.lastSeen = datetime.datetime.now()
+        self.name = name
+        self.lastSeen = lastSeen
