@@ -1,4 +1,4 @@
-from ..domain import user
+from domain import user
 from typing import Dict, Tuple
 
 class Repository:
@@ -16,7 +16,7 @@ class Repository:
     def GetAll(self):
         return self.dataMemory
     
-    def Save(self, user:user.Domain) -> Tuple(int, Exception):
+    def Save(self, user:user.Domain) -> Tuple[int, Exception]:
         self.dataMemory[self.lastid] = user
         self.lastid+=self.lastid
 
