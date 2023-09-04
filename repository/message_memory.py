@@ -9,7 +9,7 @@ class Repository:
         self.lastId = 0
 
     def Get(self, id:int)->Domain:
-        message = self.dataMemory[id]
+        message = self.dataMemory.get(id, 0)
         return message
     
     def GetAll(self):

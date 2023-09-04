@@ -12,12 +12,12 @@ class ServerAPI(base_handler.HandleRequests):
 		super().__init__(request, client_address, server)
 
 	def do_GET(self):
+		self._set_headers()
+
 		match self.path:
 			case "/message":
 				params = self._get_params("GET", True)
-				print(params)
-				print(params["id"])
-				r = self.message_repository.Get(params["id"])
+				r = self.message_repository.Get(params.get("id", ""))
 				bin = json.dumps(r, default=base_handler.myconverter).encode('utf-8')
 				self.wfile.write(bin)
 			case "/message/getAll":
@@ -28,9 +28,8 @@ class ServerAPI(base_handler.HandleRequests):
 			case "/user/getAll":
 				self.user_repository.GetAll()
 
-		self._set_headers()
-
 	def do_POST(self):
+		self._set_headers()
 		match self.path:
 			case "/message":
 				newMessage = message.Domain(0, 0, "msg")

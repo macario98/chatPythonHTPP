@@ -10,7 +10,7 @@ class Repository:
         self.lastid = 0
 
     def Get(self, id:int) -> user.Domain:
-        user = self.dataMemory[id]
+        user = self.dataMemory.get(id,0)
         return user
     
     def GetAll(self):
